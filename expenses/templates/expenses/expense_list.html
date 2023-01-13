@@ -56,4 +56,68 @@
 	{% endfor %}
   </tr>
 </table>
+
+
+<br>
+
+    <table border="1">
+        <caption>Total amount spent</caption>
+        <tr>
+        <tr>
+            <td>amount:</td>
+                <td>{{ total_amount_spent|floatformat:2 }}</td>
+        </tr>
+        </tr>
+    </table>
+
+<br>
+    <table border="1">
+        <caption>Total amount per category</caption>
+        <tr>
+        <tr>
+            <td>per category:</td>
+
+            {% for obj in amount_category %}
+                <tr>
+                    <td>{{ obj.category__name }}:</td>
+                    <td>{{ obj.amount__sum|floatformat:2 }}</td>
+                </tr>
+            {% endfor %}
+        </tr>
+        </tr>
+    </table>
+
+
+
+      <table border="1">
+        <caption>Summary per year</caption>
+        <tr>
+        <tr>
+            <td>per year:</td>
+
+            {% for obj in summary_per_year %}
+                <tr>
+                    <td>{{ obj.year|date:"Y" }}: </td>
+                    <td>{{ obj.sum|floatformat:2 }}</td>
+                </tr>
+            {% endfor %}
+        </tr>
+        </tr>
+    </table>
+
+    <table border="1">
+        <caption>Summary per month</caption>
+        <tr>
+        <tr>
+            <td>per month:</td>
+
+            {% for obj in summary_per_month %}
+                <tr>
+                    <td>{{ obj.month|date:"M" }}: </td>
+                    <td>{{ obj.sum|floatformat:2 }}</td>
+                </tr>
+            {% endfor %}
+        </tr>
+        </tr>
+    </table>
 {% endblock %}

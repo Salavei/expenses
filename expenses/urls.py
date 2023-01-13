@@ -1,7 +1,7 @@
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import path, reverse_lazy
-from .models import Expense, Category
-from .views import ExpenseListView, CategoryListView
+from expenses.models import Expense, Category
+from expenses.views import ExpenseListView, CategoryListView
 
 
 urlpatterns = [
@@ -50,4 +50,12 @@ urlpatterns = [
             template_name='generic_delete.html'
          ),
          name='category-delete'),
+    path('category/<int:pk>/edit/',
+         UpdateView.as_view(
+            model=Category,
+            fields='__all__',
+            success_url=reverse_lazy('expenses:category-list'),
+            template_name='generic_update.html'
+         ),
+         name='category-update'),
 ]
